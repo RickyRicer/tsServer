@@ -13,12 +13,15 @@ router.get('/login', (req: Request, res: Response) => {
         <label>Password</label>
         <input type="password" />
       </div>
+      <button>Submit</button>
     </form>
   `);
 });
 
 router.post('/login', (req: Request, res: Response) => {
-  
-})
+  const { email, password } = req.body;
+
+  res.send(email + password);
+});
 
 export { router };

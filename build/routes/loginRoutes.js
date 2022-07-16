@@ -15,8 +15,11 @@ router.get('/login', (req, res) => {
         <label>Password</label>
         <input type="password" />
       </div>
+      <button>Submit</button>
     </form>
   `);
 });
 router.post('/login', (req, res) => {
+    const { email, password } = req.body;
+    res.send(email + password);
 });
