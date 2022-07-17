@@ -25,10 +25,29 @@ router.get('/login', (req: Request, res: Response) => {
 router.post('/login', (req: RequestWithBody, res: Response) => {
   const { email, password } = req.body;
 
-  if (email) {
-    res.send(email.toUpperCase());
+  if(email && password && email === 'hi@hi.com' && password === 'password') {
+    req.session = { loggedIn: true };
+    res.redirect('/');
+    } else {
+      res.send('Invalid email or password');
+    }
+});
+
+router.get('/', (req: Request, res: Response) => {
+  if (req.session.loggedIn && req.session.loggedIn) {
+    res.send (`
+      <div>
+        <div>You are logged in</div>
+        <a href="/logout>Logout</div>
+      </div>
+    `);
   } else {
-    res.send('You must provide a valid email');
+    res.send (`
+    <div>
+      <div>You are not logged in</div>
+      <a href="/login>Login</div>
+    </div>
+  `);
   }
 });
 
