@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.router = void 0;
 const express_1 = require("express");
+;
 const router = (0, express_1.Router)();
 exports.router = router;
 router.get('/login', (req, res) => {
@@ -9,11 +10,11 @@ router.get('/login', (req, res) => {
     <form method="POST">
       <div>
         <label>Email</label>
-        <input type="email" />
+        <input name="email" />
       </div>
       <div>
         <label>Password</label>
-        <input type="password" />
+        <input name="password" type="password" />
       </div>
       <button>Submit</button>
     </form>
@@ -21,5 +22,10 @@ router.get('/login', (req, res) => {
 });
 router.post('/login', (req, res) => {
     const { email, password } = req.body;
-    res.send(email + password);
+    if (email) {
+        res.send(email.toUpperCase());
+    }
+    else {
+        res.send('You must provide a valid email');
+    }
 });
