@@ -18,7 +18,7 @@ exports.router = router;
 router.post('/login', (req, res) => {
     const { email, password } = req.body;
     if (email && password && email === 'hi@hi.com' && password === 'password') {
-        req.session = { loggedIn: true };
+        req.session = { loggedIn: true, secure: false };
         res.redirect('/');
     }
     else {
@@ -26,7 +26,7 @@ router.post('/login', (req, res) => {
     }
 });
 router.get('/', (req, res) => {
-    if (req.session.loggedIn && req.session.loggedIn) {
+    if (req.session && req.session.loggedIn) {
         res.send(`
       <div>
         <div>You are logged in</div>

@@ -22,7 +22,7 @@ router.post('/login', (req: RequestWithBody, res: Response) => {
   const { email, password } = req.body;
 
   if(email && password && email === 'hi@hi.com' && password === 'password') {
-    req.session = { loggedIn: true };
+    req.session = { loggedIn: true, secure: false };
     res.redirect('/');
     } else {
       res.send('Invalid email or password');
@@ -30,7 +30,7 @@ router.post('/login', (req: RequestWithBody, res: Response) => {
 });
 
 router.get('/', (req: Request, res: Response) => {
-  if (req.session.loggedIn && req.session.loggedIn) {
+  if (req.session && req.session.loggedIn) {
     res.send (`
       <div>
         <div>You are logged in</div>
