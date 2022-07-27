@@ -10,6 +10,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const decorators_1 = require("./decorators");
+function logger(req, res, next) {
+    console.log('Request was made!!!');
+    next();
+}
 let LoginController = class LoginController {
     getLogin(req, res) {
         res.send(`
@@ -29,6 +33,7 @@ let LoginController = class LoginController {
 };
 __decorate([
     (0, decorators_1.get)('/login'),
+    (0, decorators_1.use)(logger),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, Object]),
     __metadata("design:returntype", void 0)
