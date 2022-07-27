@@ -15,16 +15,6 @@ function requireAuth(req, res, next) {
 ;
 const router = (0, express_1.Router)();
 exports.router = router;
-router.post('/login', (req, res) => {
-    const { email, password } = req.body;
-    if (email && password && email === 'hi@hi.com' && password === 'password') {
-        req.session = { loggedIn: true, secure: false };
-        res.redirect('/');
-    }
-    else {
-        res.send('Invalid email or password');
-    }
-});
 router.get('/', (req, res) => {
     if (req.session && req.session.loggedIn) {
         res.send(`
